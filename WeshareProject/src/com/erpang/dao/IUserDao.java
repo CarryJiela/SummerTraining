@@ -47,7 +47,7 @@ public interface IUserDao {
 	 *  @throws Exception 
 	 *  	有异常交给调用方处理
 	 * */
-	public boolean resetPassword(String password) throws Exception;
+	public boolean resetPassword(String uno, String password) throws Exception;
 	/**
 	 *  @param nickname
 	 *  	新昵称，将数据库中存放的昵称更换为这个。
@@ -55,7 +55,7 @@ public interface IUserDao {
 	 *  @throws Exception 
 	 *  	有异常交给调用方处理
 	 * */
-	public boolean changeNickname(String nickname) throws Exception;
+	public boolean changeNickname(String uno, String nickname) throws Exception;
 	/**
 	 *  @param phone 
 	 *  	新电话，将数据库中存放的电话更换为这个。
@@ -63,7 +63,7 @@ public interface IUserDao {
 	 *  @throws Exception 
 	 *  	有异常交给调用方处理
 	 * */
-	public boolean changePhone(int phone) throws Exception;
+	public boolean changePhone(String uno, int phone) throws Exception;
 	/**
 	 *  @param imgurl 
 	 *  	新头像地址，将数据库中存放的头像地址更换为这个。
