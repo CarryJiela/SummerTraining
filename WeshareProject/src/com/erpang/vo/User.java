@@ -3,21 +3,21 @@ package com.erpang.vo;
 import java.util.Date;
 
 public class User {
-	private String uno;						//学号
-	private String uname;					//学生姓名
-	private String nickname;				//昵称
-	private int age;						//年龄
-	private int phone;						//电话号
-	private String sex;						//性别
-	private String password;				//密码
-	private String email;				 	//电子邮件
-	private int exp;						//经验值
-	private String imgurl;					//头像地址
-	private Date regdate;					//注册日期
-	public String getUno() {	
-		return uno;				
-	}									
-	public void setUno(String uno) {		
+	String uno;		//学号
+	String uname;   //姓名
+	int age;		
+	int phone;
+	String sex;
+	String nickname;
+	String password;
+	String email;
+	int exp;
+	String img_addr;
+	Date register_date;
+	public String getUno() {
+		return uno;
+	}
+	public void setUno(String uno) {
 		this.uno = uno;
 	}
 	public String getUname() {
@@ -25,12 +25,6 @@ public class User {
 	}
 	public void setUname(String uname) {
 		this.uname = uname;
-	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
 	}
 	public int getAge() {
 		return age;
@@ -50,6 +44,12 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -68,16 +68,16 @@ public class User {
 	public void setExp(int exp) {
 		this.exp = exp;
 	}
-	public String getImgurl() {
-		return imgurl;
+	public String getImg_addr() {
+		return img_addr;
 	}
-	public void setImgurl(String imgurl) {
-		this.imgurl = imgurl;
+	public void setImg_addr(String img_addr) {
+		this.img_addr = img_addr;
 	}
-	public Date getRegdate() {
-		return regdate;
+	public Date getRegister_date() {
+		return register_date;
 	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
+	public void setRegister_date(Date register_date) {
+		this.register_date = register_date;
 	}
 }
