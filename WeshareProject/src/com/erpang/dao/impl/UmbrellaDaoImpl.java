@@ -16,17 +16,89 @@ public class UmbrellaDaoImpl implements IUmbrellaDao {
     private Connection conn = null;
     private PreparedStatement ps = null;
 
-    @Override
-    public boolean Increase(Record rec) throws Exception {
+    public UmbrellaDaoImpl(Connection conn) { // 通过构造方法来取得数据库连接
+		this.conn = conn;
+	}
 
+	@Override
+	public boolean Increase(Record rec) throws Exception {
+		/**
+		 * @param 填入的是发起人的信息
+		 *            ，存入数据库的信息有：发起人的学号，发起人的起点，终点，日期，信息发起的时间，最晚结束的时间，发起人是否有伞以及备注
+		 *            ，最后要存入数据库
+		 * @return 返回是否成功添加的信息
+		 * @throws Exception
+		 *             有异常交給调用方
+		 * */
+		boolean flag = false;
+		String sql = "insert into unfinished (uno,start_time,end_time,start_point,end_point,have,remark,date_r) values (?,?,?,?,?,?,?,?)";
+		this.ps = this.conn.prepareStatement(sql); // 实例化 ps对象
+		this.ps.setString(1, rec.getUno_r());
+		this.ps.setTime(2, (Time) rec.getStart_time());
+		this.ps.setTime(3, (Time) rec.getEnd_time());
+		this.ps.setInt(4, rec.getStart_point());
+		this.ps.setInt(5, rec.getEnd_point());
+		this.ps.setBoolean(6, rec.isHave());
+		this.ps.setString(7, rec.getRemark());
+		this.ps.setDate(8, (java.sql.Date) rec.getDate_r());
+		if (this.ps.executeUpdate() > 0) {
+			flag = true;
+		}
+		this.ps.close();
+		return flag;
+	}
 
-        return false;
-    }
-
-    @Override
-    public List<Record> getAllRecords(Record rec) throws Exception {
-        return null;
-    }
+	@Override
+	public List<Record> getAllRecords(Record rec) throws Exception {
+		/**
+		 * @param 获取整个数据库中的记录
+		 *            ，用于随后的Lcs算法计算
+		 * @return 一个record列表。注意在sql语句中判断，如果发起人有伞则返回没伞人的列表，否则反之
+		 * @throws Exception
+		 *             有异常交给调用方
+		 * */
+		List<Record> all = new ArrayList<>();
+		if (rec.isHave() == true) {
+			String sql = "select * from unfinished where have=false";
+			this.ps = this.conn.prepareStatement(sql);
+			ResultSet rs = this.ps.executeQuery();
+			Record rec1;
+			while (rs.next()) {
+				rec1 = new Record();
+				this.ps.setString(1, rec1.getUno_r());
+				this.ps.setTime(2, (Time) rec1.getStart_time());
+				this.ps.setTime(3, (Time) rec1.getEnd_time());
+				this.ps.setInt(4, rec1.getStart_point());
+				this.ps.setInt(5, rec1.getEnd_point());
+				this.ps.setBoolean(6, rec1.isHave());
+				this.ps.setString(7, rec1.getRemark());
+				this.ps.setDate(8, (java.sql.Date) rec1.getDate_r());
+				all.add(rec1);
+			}
+			rs.close();
+			this.ps.close();
+		} else {
+			String sql = "select * from unfinished where have=true";
+			this.ps = this.conn.prepareStatement(sql);
+			ResultSet rs = this.ps.executeQuery();
+			Record rec1;
+			while (rs.next()) {
+				rec1 = new Record();
+				this.ps.setString(1, rec1.getUno_r());
+				this.ps.setTime(2, (Time) rec1.getStart_time());
+				this.ps.setTime(3, (Time) rec1.getEnd_time());
+				this.ps.setInt(4, rec1.getStart_point());
+				this.ps.setInt(5, rec1.getEnd_point());
+				this.ps.setBoolean(6, rec1.isHave());
+				this.ps.setString(7, rec1.getRemark());
+				this.ps.setDate(8, (java.sql.Date) rec1.getDate_r());
+				all.add(rec1);
+			}
+			rs.close();
+			this.ps.close();
+		}
+		return all;
+	}
 
     @Override
     public boolean deleteRecord(Record rec) throws Exception {
