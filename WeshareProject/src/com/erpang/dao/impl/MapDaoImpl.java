@@ -18,10 +18,10 @@ import java.util.List;
  *
  * @author Administrator
  */
-public class MaoDaoImpl implements  IMapDao{
+public class MapDaoImpl implements  IMapDao{
     private Connection connection = null;
     private PreparedStatement preparedStatement;
-    public MaoDaoImpl(Connection connection){
+    public MapDaoImpl(Connection connection){
         this.connection = connection;
     }
 
