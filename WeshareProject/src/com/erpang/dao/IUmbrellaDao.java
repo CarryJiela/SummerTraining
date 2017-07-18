@@ -66,7 +66,7 @@ public interface IUmbrellaDao {
 	 * @return 返回是否更改成功的信息
 	 * @throws Exception 有异常交给调用方
 	 * */
-	public boolean changeEndPoint(String uno,boolean have) throws Exception;
+	public boolean changeHave(String uno,boolean have) throws Exception;
 	/**
 	 * @param uno ,remark通过学号找到数据库中对应的数据并且更改其备注再重新存入数据库
 	 * @return 返回是否更改成功的信息
