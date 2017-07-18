@@ -2,9 +2,8 @@ package com.erpang.dao;
 
 import java.util.List;
 
-import com.erpang.vo.User;
 
-public interface UserDao {
+public interface IUserDao {
 	/**
 	 * 登录操作
 	 * @param uno,password
@@ -24,13 +23,13 @@ public interface UserDao {
 	 * */
 	public boolean register (User user) throws Exception;
 	/**
-	 * 尚未完成，还需副经理酌定
+	 * 
 	 * @param unp,phone
-	 * 		找回密码需要的信息，学号以及注册时用的手机号，用这个手机号与数据库中的手机号对比。
+	 * 		找回密码需要的信息，学号以及注册时用的手机号，用这个手机号与数据库中的手机号对比。注意，這裏只是一個驗證信息，具體的修改密碼在下一步進行
 	 * @return 是否验证成功，传进的参数与数据库中存放的不同则返回false，
 	 * @
 	 * */
-	public boolean findPasswordBack (String uno,int phone) throws Exception;
+	public boolean findPasswordByUno (String uno,String email) throws Exception;
 	/**
 	 * @param 无
 	 * @return 
@@ -46,7 +45,7 @@ public interface UserDao {
 	 *  @throws Exception 
 	 *  	有异常交给调用方处理
 	 * */
-	public boolean changePassword(String password) throws Exception;
+	public boolean resetPassword(String password) throws Exception;
 	/**
 	 *  @param nickname
 	 *  	新昵称，将数据库中存放的昵称更换为这个。

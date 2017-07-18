@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.erpang.vo.Record;
 
-public interface FinishedRecDao {
+public interface IFinishedRecDao {
 	/**
 	 * @param Record rec1,Record rec2 两个record对象，这两个对象都已经在record数据库中被删除了，将两个的信息统一到新的数据库finishedrec中
 	 * 且这个数据库中的信息需要全部填写完成。
