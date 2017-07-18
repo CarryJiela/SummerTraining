@@ -2,6 +2,8 @@ package com.erpang.dao;
 
 import java.util.List;
 
+import com.erpang.vo.User;
+
 
 public interface IUserDao {
 	/**
