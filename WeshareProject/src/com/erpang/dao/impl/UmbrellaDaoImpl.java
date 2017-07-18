@@ -101,23 +101,68 @@ public class UmbrellaDaoImpl implements IUmbrellaDao {
 	}
 
     @Override
-    public boolean deleteRecord(Record rec) throws Exception {
-        return false;
+    public boolean deleteRecord(String uno) throws Exception {
+        boolean flag = true;
+    	String sql = "Delete from unfinished where uno = ?";
+    	this.ps = this.conn.prepareStatement(sql);
+		this.ps.setString(1, uno);
+		ResultSet rs = this.ps.executeQuery();
+    	if (this.ps.executeUpdate() > 0){
+			flag = true;
+		}
+		this.ps.close();
+        return flag;
     }
 
     @Override
     public Record getRecord(String uno) throws Exception {
-        return null;
+        Record rec = null;
+		String sql = "Select uno,start_time,end_time,start_point,end_point,have,remark,date_r from unfinished where uno = ?";
+		this.ps = this.conn.prepareStatement(sql);
+		this.ps.setString(1, uno);
+		ResultSet rs = this.ps.executeQuery();
+		if(rs.next()){
+			rec = new Record();
+			rec.setUno_r(rs.getString(1));
+			rec.setStart_time(rs.getDate(2));
+			rec.setEnd_time(rs.getDate(3));
+			rec.setStart_point(rs.getInt(4));
+			rec.setEnd_point(rs.getInt(5));
+			rec.setHave(rs.getBoolean(6));
+			rec.setRemark(rs.getString(7));
+			rec.setDate_r(rs.getDate(8));
+		}
+		rs.close();
+		this.ps.close();
+		return rec;
     }
 
     @Override
     public boolean changeStartPoint(String uno, int start_point) throws Exception {
-        return false;
+        boolean flag = false;
+    	String sql = "update end_point from where uno like ?";
+    	this.ps = this.conn.prepareStatement(sql);
+    	this.ps.setInt(1,start_point);
+    	ResultSet rs = this.ps.executeQuery();
+    	if (this.ps.executeUpdate() > 0){
+			flag = true;
+		}
+		this.ps.close();
+    	return flag;
     }
 
     @Override
     public boolean changeEndPoint(String uno, int end_point) throws Exception {
-        return false;
+        boolean flag = false;
+    	String sql = "update end_point from where uno like ?";
+    	this.ps = this.conn.prepareStatement(sql);
+    	this.ps.setInt(1,end_point);
+    	ResultSet rs = this.ps.executeQuery();
+    	if (this.ps.executeUpdate() > 0){
+			flag = true;
+		}
+		this.ps.close();
+		return flag;
     }
 
     @Override
