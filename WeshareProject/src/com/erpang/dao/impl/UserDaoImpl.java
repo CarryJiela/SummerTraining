@@ -19,9 +19,29 @@ public class UserDaoImpl implements IUserDao{
 	@Override
 	public boolean logIn(String uno, String password) throws Exception {
 		boolean flag = false;
-		String sql = "";
-		return false;
-	}
+		try {
+			String sql = "select uno,password from userinfo where uno = ? and password = ?";
+			this.ps = this.conn.prepareStatement(sql);
+			this.ps.setString(1, uno);
+			this.ps.setString(2, password);
+			ResultSet rs = this.ps.executeQuery();
+			if (rs.next()) {
+				rs.getString(1);
+				flag = true;
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (this.ps != null) {
+				try {
+					this.ps.close();
+				} catch (Exception e) {
+					throw e;
+				}
+			}
+		}
+		return flag;
+	}	
 
 	@Override
 	public boolean register(User user) throws Exception {
@@ -55,10 +75,30 @@ public class UserDaoImpl implements IUserDao{
 	}
 
 	@Override
-	public boolean changeImgUrl(String imgurl) throws Exception {
-		return false;
+	public boolean changeImgUrl(String imgurl,String uno) throws Exception {
+		boolean flag;
+		flag = false;
+		try {
+			String sql = "update userinfo set img_addr = ? where uno = ?";
+			this.ps = this.conn.prepareStatement(sql);
+			this.ps.setString(1, imgurl);
+			this.ps.setString(2, uno);
+			if (this.ps.executeUpdate() > 0) {
+				flag = true;
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (this.ps != null) {
+				try {
+					this.ps.close();
+				} catch (Exception e) {
+					throw e;
+				}
+			}
+		}
+		return flag;
 	}
-
 	@Override
 	public List<User> match(User user) throws Exception {
 		return null;

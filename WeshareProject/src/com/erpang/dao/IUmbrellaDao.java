@@ -23,7 +23,7 @@ public interface IUmbrellaDao {
 	 * @return 返回是否删除成功的信息
 	 * @throws Exception 有异常交给调用方
 	 * */
-	public boolean deleteRecord(Record rec) throws Exception;
+	public boolean deleteRecord(String uno) throws Exception;
 	/**
 	 * *
 	 * @param uno 通过学号找到数据库中对应的数据 
@@ -48,13 +48,13 @@ public interface IUmbrellaDao {
 	 * @return 返回是否更改成功的信息
 	 * @throws Exception 有异常交给调用方
 	 * */
-	public boolean changeStartTime(String uno,int start_time) throws Exception;
+	public boolean changeStartTime(String uno,Date start_time) throws Exception;
 	/**
 	 * @param uno ,end-time通过学号找到数据库中对应的数据并且更改其结束时间再重新存入数据库(时间类尚未确定类型，会有更改）
 	 * @return 返回是否更改成功的信息
 	 * @throws Exception 有异常交给调用方
 	 * */
-	public boolean changeEndtime(String uno,int end_time) throws Exception;
+	public boolean changeEndtime(String uno,Date end_time) throws Exception;
 	/**
 	 * @param uno ,date_r通过学号找到数据库中对应的数据并且更改其预定日期再重新存入数据库
 	 * @return 返回是否更改成功的信息
