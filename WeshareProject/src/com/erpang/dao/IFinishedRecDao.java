@@ -2,6 +2,7 @@ package com.erpang.dao;
 
 import java.util.List;
 
+import com.erpang.vo.Finished;
 import com.erpang.vo.Record;
 
 public interface IFinishedRecDao {
@@ -17,5 +18,5 @@ public interface IFinishedRecDao {
 	 * @return 返回借用记录的列表
 	 * @throws Exception 有异常交给调用方
 	 * */
-	public List<Record> getAllRecord(String uno) throws Exception;
+	public List<Finished> getAllRecord(String uno) throws Exception;
 }
