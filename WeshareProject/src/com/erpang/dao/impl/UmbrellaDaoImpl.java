@@ -1,9 +1,6 @@
 package com.erpang.dao.impl;
 
 import com.erpang.dao.IUmbrellaDao;
-package com.erpang.dao.impl;
-
-import com.erpang.dao.IUmbrellaDao;
 import com.erpang.vo.Record;
 
 import java.sql.Connection;
