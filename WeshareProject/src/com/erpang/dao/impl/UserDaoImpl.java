@@ -60,18 +60,45 @@ public class UserDaoImpl implements IUserDao{
 	}
 
 	@Override
-	public boolean resetPassword(String password) throws Exception {
-		return false;
+	public boolean resetPassword(String uno, String password) throws Exception {
+		boolean flag=false;
+		String sql="update userinfo set password=? where uno=?";
+		this.ps=this.conn.prepareStatement(sql);
+		this.ps.setString(1, password);
+		this.ps.setString(2, uno);
+		if(this.ps.executeUpdate()>0){
+			flag=true;
+		}
+		ps.close();
+		return flag;
 	}
 
 	@Override
-	public boolean changeNickname(String nickname) throws Exception {
-		return false;
+	public boolean changeNickname(String uno, String nickname) throws Exception {
+		boolean flag=false;
+		String sql="update userinfo set nickname=? where uno=?";
+		this.ps=this.conn.prepareStatement(sql);
+		this.ps.setString(1, nickname);
+		this.ps.setString(2, uno);
+		if(this.ps.executeUpdate()>0){
+			flag=true;
+		}
+		ps.close();
+		return flag;
 	}
 
 	@Override
-	public boolean changePhone(int phone) throws Exception {
-		return false;
+	public boolean changePhone(String uno, int phone) throws Exception {
+		boolean flag=false;
+		String sql="update userinfo set phone=? where uno=?";
+		this.ps=this.conn.prepareStatement(sql);
+		this.ps.setInt(1, phone);
+		this.ps.setString(2, uno);
+		if(this.ps.executeUpdate()>0){
+			flag=true;
+		}
+		ps.close();
+		return flag;
 	}
 
 	@Override
