@@ -25,6 +25,7 @@ public class UserDaoImpl implements IUserDao{
 
 	@Override
 	public boolean register(User user) throws Exception {
+		
 		return false;
 	}
 
