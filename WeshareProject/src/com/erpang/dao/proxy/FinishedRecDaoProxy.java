@@ -7,7 +7,6 @@ import com.erpang.dao.impl.FinishedRecDaoImpl;
 import com.erpang.vo.Finished;
 import com.erpang.vo.Record;
 
-import edu.nuaa.vo.Emp;
 
 import com.erpang.dbc.DataBaseConnection;
 
